@@ -15,6 +15,23 @@ function getList() {
   });
 }
 
+
+let feedbackPara = document.querySelector("#error");
+let ul = document.querySelector("#list");
+
+getList()
+  .then((list) => {
+    list.forEach((hobbit) => {
+      let li = document.createElement("li");
+      li.textContent = hobbit;
+      ul.appendChild(li);
+    });
+  })
+  .catch((err) => {
+    console.error(err);
+    feedbackPara.textContent = err.message;
+  });
+
 // TODO: Handle the resolved or rejected states of the promise
 
 // TODO: If the promise resolves with the list of hobbits
